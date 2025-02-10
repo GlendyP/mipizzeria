@@ -3,3 +3,66 @@
   text-align: center;
   width: 100%;
 }
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.top {
+  flex: 0;
+}
+
+.bottom {
+  flex: 0;
+}
+
+.middle {
+  flex: 80;
+}
+
+.nav-tabs {
+  border: none;
+}
+
+.pestanas .nav-item {
+  background: #1a202a;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 0;
+}
+
+.pestanas .nav-tabs {
+  border: none;
+  gap: 5px;
+}
+
+.pestanas .nav-link {
+  min-width: 150px;
+  color: #777;
+  text-align: left;
+}
+
+.pestanas .nav-link.active {
+  background: #1a202a !important;
+  border-radius: 10px 10px 0 0;
+  color: #fff !important;
+  border: none;
+}
+
+.login, .registro {
+  background: #1a202a;
+  color: #fff;
+  border-radius: 0 20px 20px 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.login .form-control, .registro .form-control {
+  background: transparent;
+  color: #fff;
+}
+
+.login .form-control::placeholder, .registro .form-control::placeholder {
+  color: #777;
+}
