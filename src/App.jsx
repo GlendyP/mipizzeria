@@ -11,7 +11,6 @@ import Container from "react-bootstrap/Container";
 import "./App.css";
 
 const App = () => {
-  const handleSelect = (eventKey) => alert(`selected ${eventKey}`);
 
   return (
     <>
