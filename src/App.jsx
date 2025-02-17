@@ -1,14 +1,15 @@
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
+// import Login from "./components/Login";
+// import Register from "./components/Register";
+// import Tab from "react-bootstrap/Tab";
+// import Tabs from "react-bootstrap/Tabs";
+// import Col from "react-bootstrap/Col";
+// import Row from "react-bootstrap/Row";
+// import Container from "react-bootstrap/Container";
 import "./App.css";
+import Cart from "./components/Cart";
 
 const App = () => {
 
@@ -20,7 +21,8 @@ const App = () => {
         </div>
         <div className="middle d-flex flex-column justify-content-center align-items-center">
           {/* <Home /> */}
-          <Container>
+          <Cart />
+          {/* <Container>
             <Row>
               <Col className="pestanas" md={{ span: 6, offset: 3 }}>
                 <Tabs
@@ -36,7 +38,7 @@ const App = () => {
                 </Tabs>
               </Col>
             </Row>
-          </Container>
+          </Container> */}
         </div>
         <div className="bottom">
           <Footer />

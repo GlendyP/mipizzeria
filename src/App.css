@@ -66,3 +66,7 @@
 .login .form-control::placeholder, .registro .form-control::placeholder {
   color: #777;
 }
+
+.img-pizza-cart {
+  width: 80px;
+}
