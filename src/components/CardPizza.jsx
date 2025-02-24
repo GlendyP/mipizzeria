@@ -3,10 +3,10 @@ const CardPizza = ({ pizza }) => {
     <div className="card mb-5">
       <img className="card-img-top" src={pizza.img} alt={pizza.name} />
       <div className="card-body p-0">
-        <h4 className="card-title text-start pt-3 ps-3">Pizza {pizza.name}</h4>
+        <h4 className="card-title text-start pt-3 ps-3 text-capitalize">Pizza {pizza.name}</h4>
         <hr />
         <h4 className="card-text fw-normal">🍕 Ingredientes:</h4>
-        <ul className="list-unstyled card-text">
+        <ul className="list-unstyled card-text text-capitalize">
           {pizza.ingredients.map((ingredient, i) => (
             <li key={i}>{ingredient}</li>
           ))}

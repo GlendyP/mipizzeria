@@ -9,7 +9,8 @@ import Footer from "./components/Footer";
 // import Row from "react-bootstrap/Row";
 // import Container from "react-bootstrap/Container";
 import "./App.css";
-import Cart from "./components/Cart";
+import Pizzas from "./components/Pizzas";
+// import Cart from "./components/Cart";
 
 const App = () => {
 
@@ -20,8 +21,9 @@ const App = () => {
           <Navbar />
         </div>
         <div className="middle d-flex flex-column justify-content-center align-items-center">
-          {/* <Home /> */}
-          <Cart />
+          <Home />
+          <Pizzas />
+          {/* <Cart /> */}
           {/* <Container>
             <Row>
               <Col className="pestanas" md={{ span: 6, offset: 3 }}>
