@@ -53,9 +53,12 @@
 .login, .registro {
   background: #1a202a;
   color: #fff;
-  border-radius: 0 20px 20px 20px;
   padding-top: 20px;
   padding-bottom: 20px;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login .form-control, .registro .form-control {

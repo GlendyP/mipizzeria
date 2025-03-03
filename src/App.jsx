@@ -1,51 +1,39 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Home from "./components/Home";
 import Footer from "./components/Footer";
-// import Login from "./components/Login";
-// import Register from "./components/Register";
-// import Tab from "react-bootstrap/Tab";
-// import Tabs from "react-bootstrap/Tabs";
-// import Col from "react-bootstrap/Col";
-// import Row from "react-bootstrap/Row";
-// import Container from "react-bootstrap/Container";
 import "./App.css";
-import Pizzas from "./components/Pizzas";
-// import Cart from "./components/Cart";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Cart from "./pages/Cart";
+import Home from "./pages/Home";
+import Pizza from "./pages/Pizza";
+import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
-
   return (
     <>
-      <div className="contenedor">
-        <div className="top">
-          <Navbar />
+      <BrowserRouter>
+        <div className="contenedor">
+          <div className="top">
+            <Navbar />
+          </div>
+          <div className="middle d-flex flex-column justify-content-center align-items-center">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/pizza/p001" element={<Pizza />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
+          <div className="bottom">
+            <Footer />
+          </div>
         </div>
-        <div className="middle d-flex flex-column justify-content-center align-items-center">
-          <Home />
-          <Pizzas />
-          {/* <Cart /> */}
-          {/* <Container>
-            <Row>
-              <Col className="pestanas" md={{ span: 6, offset: 3 }}>
-                <Tabs
-                  defaultActiveKey="login"
-                  id="uncontrolled-tab-example"
-                >
-                  <Tab eventKey="login" title="Login">
-                    <Login />
-                  </Tab>
-                  <Tab eventKey="registro" title="Registro">
-                    <Register />
-                  </Tab>
-                </Tabs>
-              </Col>
-            </Row>
-          </Container> */}
-        </div>
-        <div className="bottom">
-          <Footer />
-        </div>
-      </div>
+      </BrowserRouter>
     </>
   );
 };

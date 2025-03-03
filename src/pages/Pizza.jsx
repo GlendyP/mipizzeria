@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-// import Button from 'react-bootstrap/Button'
 
-const Pizzas = () => {
+const Pizza = () => {
   const url = "http://localhost:5000/api/pizzas/p001";
   const [pizza, setPizza] = useState();
 
@@ -58,4 +57,4 @@ const Pizzas = () => {
   ) : null;
 };
 
-export default Pizzas;
+export default Pizza;
