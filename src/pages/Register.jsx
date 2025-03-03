@@ -48,7 +48,7 @@ const Register = () => {
   };
 
   return (
-    <Container>
+    <Container fluid>
       <Row>
         <Col className="registro">
           <Form onSubmit={handleSubmit} noValidate validated={validated}>

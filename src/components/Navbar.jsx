@@ -1,13 +1,15 @@
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
   const total = 25000;
-  const token = false;
+  const token = true;
 
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/">
           Pizzería Mamma Mia!
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -19,42 +21,44 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="mynavbar">
           <ul className="navbar-nav me-auto w-100">
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/">
                 🍕 Home
-              </a>
+              </Link>
             </li>
             {token ? (
               <>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <Link className="nav-link" to="/profile">
                     🔓 Profile
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <Link className="nav-link" to="/">
                     🔒 Logout
-                  </a>
+                  </Link>
                 </li>
               </>
             ) : (
               <>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <Link className="nav-link" to="/login">
                     🔐 Login
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <Link className="nav-link" to="/register">
                     🔐 Register
-                  </a>
+                  </Link>
                 </li>
               </>
             )}
-                           <form className="d-flex ms-auto">
-                  <button className="btn btn-outline-primary" type="button">
-                    🛒 Total: ${total.toLocaleString('es-CL')}
-                  </button>
-                </form>
+            <form className="d-flex ms-auto">
+              <Link to="/cart">
+                <button className="btn btn-outline-primary" type="button">
+                  🛒 Total: ${total.toLocaleString("es-CL")}
+                </button>
+              </Link>
+            </form>
           </ul>
         </div>
       </div>

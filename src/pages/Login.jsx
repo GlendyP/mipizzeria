@@ -45,7 +45,7 @@ const Login = () => {
 
   return (
 
-    <Container>
+    <Container fluid>
       <Row>
         <Col className="login">
           <Form onSubmit={handleSubmit} noValidate validated={validated}>
