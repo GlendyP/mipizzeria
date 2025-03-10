@@ -1,48 +1,19 @@
-import { pizzaCart } from "../assets/js/pizza";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Stack from "react-bootstrap/Stack";
 import Image from "react-bootstrap/Image";
 import Button from 'react-bootstrap/Button';
-import { useState } from "react";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 const Cart = () => {
-  const [cart, setCart] = useState(pizzaCart);
-
-  const sumarPizzas = (pizza) => {
-    const pizzas = [...pizzaCart];
-    const indicePizza = pizzas.findIndex((p) => p.id === pizza.id);
-  
-    if (indicePizza !== -1) {
-      pizzas[indicePizza].count++;
-      setCart(pizzas);
-    }
-  };
-  
-  const restarPizzas = (pizza) => {
-    const pizzas = [...pizzaCart];
-    const indicePizza = pizzas.findIndex((p) => p.id === pizza.id);
-  
-    if (indicePizza !== -1 && pizzas[indicePizza].count > 0) {
-      pizzas[indicePizza].count--;
-      setCart(pizzas);
-    }
-  };
-
-  const calcularTotalCompra = (cart) => {
-    let total = 0;
-    for (const pizza of cart) {
-      total += pizza.price * pizza.count;
-    }
-    return total;
-  };
-
-  const total = calcularTotalCompra(cart);
+  const { agregarPizza, eliminarPizza, total, carritoPizzas } = useContext(CartContext);
+  const cart = carritoPizzas();
 
   return (
-    <Container>
-
+    
+    <Container className="mb-5">
       <Row>
         <Col xs={12} md={{ span: 6, offset: 3 }}>
           <h1 className="text-start">Detalles del pedido:</h1>
@@ -71,7 +42,7 @@ const Cart = () => {
                   <div className="p-2">
                     <Button
                       variant="outline-danger"
-                      onClick={() => restarPizzas(pizza)}
+                      onClick={() => eliminarPizza(pizza)}
                     >
                       -
                     </Button>
@@ -81,7 +52,7 @@ const Cart = () => {
                   </div>
                   <div className="p-2">
                     <Button variant="outline-primary"
-                      onClick={() => sumarPizzas(pizza)}
+                      onClick={() => agregarPizza(pizza)}
                     >
                       +
                     </Button>
