@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 const CardPizza = ({ pizza }) => {
   const { agregarPizza } = useContext(CartContext);
@@ -29,7 +30,7 @@ const CardPizza = ({ pizza }) => {
             {pizza.price.toLocaleString("es-CL")}
           </h4>
           <div className="d-flex justify-content-between gap-3 px-sm-5 pb-3">
-            <button className="btn btn-outline-dark">Ver Más 👀</button>
+            <Link className="btn btn-outline-dark" to={`/pizza/${pizza.id}`}>Ver Más 👀</Link>
             <button className="btn btn-dark" onClick={() => sumarPizza(pizza.id, pizza.img, pizza.name, pizza.price )}>Añadir 🛒 </button>
           </div>
         </div>

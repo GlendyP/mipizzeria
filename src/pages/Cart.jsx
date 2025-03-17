@@ -6,9 +6,13 @@ import Image from "react-bootstrap/Image";
 import Button from 'react-bootstrap/Button';
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { UserContext } from "../context/UserContext";
 
 const Cart = () => {
   const { agregarPizza, eliminarPizza, total, carritoPizzas } = useContext(CartContext);
+  const { getToken } = useContext(UserContext);
+
+  const token = getToken();
   const cart = carritoPizzas();
 
   return (
@@ -68,7 +72,7 @@ const Cart = () => {
           <h4 className="text-start">Total: ${total.toLocaleString('es-CL')}</h4>
         </Col>
         <Col xs={12} md={{ span: 6, offset: 3 }} className="text-start">
-          <Button variant="dark">Pagar</Button>
+          <Button variant="dark" disabled={!token}>Pagar</Button>
         </Col>
       </Row>
     </Container>

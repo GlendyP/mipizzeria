@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
 const Pizza = () => {
-  const url = "http://localhost:5000/api/pizzas/p001";
+  const { id } = useParams();
+  const url = `http://localhost:5000/api/pizzas/${id}`;
   const [pizza, setPizza] = useState();
+  const { agregarPizza } = useContext(CartContext);
 
   const obtenerPizza = async () => {
     try {
@@ -13,6 +17,10 @@ const Pizza = () => {
       console.log(error);
     }
   };
+
+  const añadirPizza = ({ id, img, name, price }) => {
+    agregarPizza({ id, img, name, price })
+  }
 
   useEffect(() => {
     obtenerPizza();
@@ -47,7 +55,7 @@ const Pizza = () => {
                 {pizza.price.toLocaleString("es-CL")}
               </h4>
               <div className="d-flex justify-content-center gap-3 px-sm-5 pb-3">
-                <button className="btn btn-dark">Añadir 🛒 </button>
+                <button className="btn btn-dark" onClick={() => añadirPizza(pizza)}>Añadir 🛒 </button>
               </div>
             </div>
           </div>
