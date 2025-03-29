@@ -4,16 +4,54 @@ import Col from "react-bootstrap/Col";
 import Stack from "react-bootstrap/Stack";
 import Image from "react-bootstrap/Image";
 import Button from 'react-bootstrap/Button';
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import { UserContext } from "../context/UserContext";
+import { Toast } from "react-bootstrap";
 
 const Cart = () => {
   const { agregarPizza, eliminarPizza, total, carritoPizzas } = useContext(CartContext);
-  const { getToken } = useContext(UserContext);
+  const { getUser } = useContext(UserContext);
+  const [toastMessage, setToastMessage] = useState(null);
 
-  const token = getToken();
+  const user = getUser();
   const cart = carritoPizzas();
+
+  const showToast = (message, variant) => {
+    setToastMessage({ message, variant });
+    setTimeout(() => setToastMessage(null), 3000);
+  };
+
+  const handleCartClick = () => {
+    handleCart(user, cart, showToast);
+  };
+
+  const handleCart = async (user, cart, showToast) => { 
+    try {
+      const URL = 'http://localhost:5000/api/checkouts';
+      const response = await fetch(URL, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify(cart),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Errro al intentar pagar`);
+      }
+  
+      const respuesta = await response.json();
+  
+      showToast('Pago exitoso', 'success');
+  
+      console.log(respuesta);
+    } catch (error) {
+      showToast('Oops... Algo salió mal. Inténtalo nuevamente.', 'danger'); 
+      console.error('Error en handleCart:', error);
+    }
+  };
+  
 
   return (
     
@@ -72,9 +110,26 @@ const Cart = () => {
           <h4 className="text-start">Total: ${total.toLocaleString('es-CL')}</h4>
         </Col>
         <Col xs={12} md={{ span: 6, offset: 3 }} className="text-start">
-          <Button variant="dark" disabled={!token}>Pagar</Button>
+          <Button variant="dark" disabled={!user || total === 0} onClick={() => handleCartClick(user)}>Pagar</Button>
         </Col>
       </Row>
+      {toastMessage && (
+        <Toast
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 1000,
+          }}
+          onClose={() => setToastMessage(null)}
+          show={!!toastMessage}
+          bg={toastMessage.variant.toLowerCase()}
+          autohide
+        >
+          <Toast.Body className="text-white">{toastMessage.message}</Toast.Body>
+        </Toast>
+      )}
     </Container>
   );
 };

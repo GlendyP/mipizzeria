@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Button from 'react-bootstrap/Button';
+import { UserContext } from "../context/UserContext";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -11,11 +12,12 @@ const Login = () => {
     password: "",
   });
 
+  const { login } = useContext(UserContext);
   const [mensaje, setMensaje] = useState("");
   const [validated, setValidated] = useState(false);
 
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!formData.email || !formData.password) {
@@ -30,9 +32,8 @@ const Login = () => {
       return;
     }
 
-    setMensaje("Autenticado exitosamente.");
     setValidated(false);
-
+    await login(formData.email, formData.password);
   };
 
   const handleChange = (e) => {

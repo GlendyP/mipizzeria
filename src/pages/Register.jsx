@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { UserContext } from "../context/UserContext";
 
 const Register = () => {
   const [validated, setValidated] = useState(false);
   const [mensaje, setMensaje] = useState("");
+  const { register } = useContext(UserContext)
 
   const [formData, setFormData] = useState({
     email: "",
@@ -22,7 +24,7 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!formData.email || !formData.password || !formData.confirmPassword) {
@@ -45,6 +47,8 @@ const Register = () => {
 
     setMensaje("El registro fue exitoso.");
     setValidated(false);
+    await register(formData.email, formData.password);
+
   };
 
   return (

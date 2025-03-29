@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./App.css";
@@ -14,12 +14,11 @@ import { useContext } from "react";
 import { UserContext } from "./context/UserContext";
 
 const App = () => {
-  const { getToken } = useContext(UserContext);
-  const token = getToken();
+  const { getUser } = useContext(UserContext);
+  const user = getUser();
 
   return (
     <>
-      <BrowserRouter>
         <CartProvider>
           <div className="contenedor">
             <div className="top">
@@ -32,15 +31,15 @@ const App = () => {
                 <Route path="/cart" element={<Cart />} />
                 <Route
                   path="/register"
-                  element={!token ? <Register /> : <Navigate to="/" />}
+                  element={!user ? <Register /> : <Navigate to="/" />}
                 />
                 <Route
                   path="/login"
-                  element={!token ? <Login /> : <Navigate to="/" />}
+                  element={!user ? <Login /> : <Navigate to="/" />}
                 />
                 <Route
                   path="/profile"
-                  element={token ? <Profile /> : <Navigate to="/login" />}
+                  element={user ? <Profile /> : <Navigate to="/login" />}
                 />
                 <Route path="*" element={<NotFound />} />
               </Routes>
@@ -50,7 +49,6 @@ const App = () => {
             </div>
           </div>
         </CartProvider>
-      </BrowserRouter>
     </>
   );
 };

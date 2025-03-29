@@ -5,8 +5,8 @@ import { UserContext } from "../context/UserContext";
 
 const Navbar = () => {
   const { total } = useContext(CartContext)
-  const { getToken, logout } = useContext(UserContext);
-  const token = getToken();
+  const { getUser, logout } = useContext(UserContext);
+  const user = getUser();
 
   const cerrarSesion = () => {
     logout()
@@ -33,7 +33,7 @@ const Navbar = () => {
                 🍕 Home
               </Link>
             </li>
-            {token ? (
+            {user ? (
               <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/profile">
